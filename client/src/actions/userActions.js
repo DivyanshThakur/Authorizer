@@ -12,7 +12,7 @@ export const loginUser = async (formData) => {
             return null;
         }
     }catch(err) {
-        console.log(err);
+        alert("Unable to login user. Try checking email/password");
         return null;
     }
 }
@@ -27,7 +27,7 @@ export const registerUser = async (formData) => {
             return null;
         }
     }catch(err) {
-        console.log(err);
+        alert("Unable to register user. Try checking email/password");
         return null;
     }
 }
@@ -44,6 +44,6 @@ export const getUsers = async () => {
             return [];
         }
     }catch(err) {
-        console.log(err);
+        alert("Unable to get users.");
     }
 }
