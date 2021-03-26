@@ -2,11 +2,11 @@ import { makeStyles } from "@material-ui/core";
 
 export default makeStyles((theme) => ({
     intro: {
-      width: '500px',
-      margin: '40px auto',
+      width: '100%',
+      margin: '0 auto',
       height: 400,
-      borderRadius: '20px',
-      boxShadow: '0 10px 10px rgba(0, 0, 0, 0.5)',
+      borderRadius: '0 0 20px 20px',
+      boxShadow: '0 10px 10px rgba(0, 0, 0, 0.2)',
       backgroundColor: theme.palette.background.paper,
       display: 'flex',
       flexDirection: 'column',
@@ -15,7 +15,6 @@ export default makeStyles((theme) => ({
       background: 'linear-gradient(to right top, #edf9ff, #73d0ff)',
     },
     title: {
-        lineHeight: 2,
         fontSize: '5rem'
     },
 
