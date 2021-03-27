@@ -4,7 +4,7 @@ import useStyles from './styles';
 const Home = ({user, users}) => {
     const classes = useStyles();
 
-    const renderedUsers = users.map((user, index) => {
+    const renderedUsers = users?.map((user, index) => {
         return (
             <div key={index} className={classes.item}>{index+1}. {user}</div>
         );
@@ -18,7 +18,7 @@ const Home = ({user, users}) => {
                 names of the members registered in the Authorizer.</p>
             </div>
             {
-                (user && users.length>0) ? (
+                (user && users?.length>0) ? (
                     <div className={classes.users}>
                         <h1 className={classes.userList}>List of Users</h1>
                         {renderedUsers}

@@ -6,7 +6,7 @@ const auth = async (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1];
         const decodedToken = jwt.verify(token, process.env.ENCRYPT_KEY);
 
-        const user = await User.findById(decodedToken);
+        const user = await User.findById(decodedToken.id);
         
         if(decodedToken.id !== String(user._id)) {
             res.status(400).json({message: "Unauthorized user"});

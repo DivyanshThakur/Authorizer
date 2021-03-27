@@ -22,6 +22,7 @@ export const registerUser = async (formData) => {
 export const getUsers = async () => {
     try {
         const {data} = await api.getUsers();
+        console.log(data);
         return data.result;
     }catch(err) {
         console.log(err);
