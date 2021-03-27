@@ -41,13 +41,14 @@ export default function Register({updateUser}) {
   
   const [formData, setFormData] = useState(initialState);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
       e.preventDefault();
-      const user = registerUser(formData);
-      if(user) {
-        updateUser(user);
+      try{
+        const {result, token} = await registerUser(formData);
+        updateUser(result);
+        localStorage.setItem('profile', JSON.stringify({result, token}));
         history.push("/");
-      } else {
+      } catch(e) {
         alert("Unknown error occurred. Please check your email/password");
       }
   }

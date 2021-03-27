@@ -8,28 +8,26 @@ import {getUsers} from '../actions/userActions.js';
 
 const App = () => {
 
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile'))?.result);
     const [userNames, setUserNames] = useState([]);
 
     const updateUser = (usr) => {
-        usr.then(res => setUser(res)).catch(error => console.log(error));
-    }
-
-    const logoutUser = () => {
-        setUser(null);
+        setUser(usr);
     }
 
     useEffect(() => {
         if(user) {
             const userPromise = getUsers();
-            userPromise.then((userNames) => setUserNames(userNames)).catch(err => console.log(err));
+            userPromise.then((userNames) => {
+                setUserNames(userNames);
+            }).catch(err => alert(err));
 
         }
     }, [user]);
 
     return (
         <Router>
-            <Navbar user={user} logoutUser={logoutUser} />
+            <Navbar user={user} setUser={setUser} />
                 <Switch>
                     <Route path="/" exact>
                         <Home user={user} users={userNames} />

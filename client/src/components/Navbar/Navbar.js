@@ -5,11 +5,19 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import HomeIcon from '@material-ui/icons/Home';
-import {Link} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import useStyles from './styles';
 
-export default function Navbar({user, logoutUser}) {
+export default function Navbar({user, setUser}) {
   const classes = useStyles();
+  const history = useHistory();
+
+  const logout = () => {
+    localStorage.clear();
+    
+    setUser(null);
+    history.push("/");
+  }
 
   return (
     <div className={classes.root}>
@@ -32,8 +40,8 @@ export default function Navbar({user, logoutUser}) {
           {
             user ? (
               <React.Fragment>
-                <Typography variant="h6" color="inherit">Welcome {user.result.name}</Typography>
-              <Button className={classes.logoutButton} color="inherit" component={Link} onClick={logoutUser} to="/">Logout</Button>
+                <Typography variant="h6" color="inherit">Welcome {user.name}</Typography>
+              <Button className={classes.logoutButton} color="inherit" component={Link} onClick={logout} to="/">Logout</Button>
               </React.Fragment>
             ) : (
               <React.Fragment>

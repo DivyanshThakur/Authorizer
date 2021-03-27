@@ -3,47 +3,27 @@ import * as api from '../api/index.js';
 export const loginUser = async (formData) => {
     try {
         const res = await api.login(formData);
-
-        if(res.status === 200) {
-            console.log(res.data);
-            return res.data;
-        } else {
-            alert(res.message);
-            return null;
-        }
+        return res.data;
     }catch(err) {
-        alert("Unable to login user. Try checking email/password");
-        return null;
+        console.log(err);
     }
 }
 
 export const registerUser = async (formData) => {
     try {
         const res = await api.register(formData);
-        if(res.status === 200) {
-            return res.data;
-        } else {
-            alert(res.message);
-            return null;
-        }
+        return res.data;
     }catch(err) {
-        alert("Unable to register user. Try checking email/password");
-        return null;
+        console.log(err);
     }
 }
 
 
 export const getUsers = async () => {
     try {
-        const res = await api.getUsers();
-        if(res.status === 200) {
-            return res.data.result;
-        } else {
-            console.log(res);
-            alert(res.data.message);
-            return [];
-        }
+        const {data} = await api.getUsers();
+        return data.result;
     }catch(err) {
-        alert("Unable to get users.");
+        console.log(err);
     }
 }

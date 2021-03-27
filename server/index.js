@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import authRouter from './routes/authRouter.js';
 import {getUsers} from './controllers/user.js';
+import auth from './middleware/auth.js';
 
 const app = express();
 
@@ -15,7 +16,7 @@ app.use(express.urlencoded({extended: true}));
 
 app.use('/auth', authRouter);
 
-app.get('/users', getUsers);
+app.get('/users', auth, getUsers);
 
 app.get('/', (req, res) => {
     res.send('Hello from Authorizer API');

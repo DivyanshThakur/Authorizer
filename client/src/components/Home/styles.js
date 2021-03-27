@@ -14,7 +14,7 @@ export default makeStyles((theme) => ({
       justifyContent: 'center',
       background: 'linear-gradient(to right top, #edf9ff, #73d0ff)',
     },
-    title: {
+    title: {    
         fontSize: '5rem'
     },
 

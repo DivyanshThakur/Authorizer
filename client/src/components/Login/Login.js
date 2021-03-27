@@ -34,14 +34,17 @@ export default function Login({user, updateUser}) {
 
   const [formData, setFormData] = useState(initialState);
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
       e.preventDefault();
 
-      const user = loginUser(formData);
-
-        updateUser(user);
+      try{
+        const {result, token} = await loginUser(formData);
+        updateUser(result);
+        localStorage.setItem('profile', JSON.stringify({result, token}));
         history.push("/");
-
+      } catch(e) {
+        alert("Unknown error occurred. Please check your email/password");
+      }
   }
 
   const handleChange = (e) => {
