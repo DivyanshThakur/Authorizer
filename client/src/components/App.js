@@ -20,7 +20,7 @@ const App = () => {
             const userPromise = getUsers();
             userPromise.then((userNames) => {
                 setUserNames(userNames);
-            }).catch(err => alert(err));
+            }).catch(err => alert("hi " + err));
 
         }
     }, [user]);
